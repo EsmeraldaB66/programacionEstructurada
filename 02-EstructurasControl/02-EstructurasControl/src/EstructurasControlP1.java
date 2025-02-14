@@ -42,7 +42,7 @@ public class EstructurasControlP1 {
                 }
                 break;
             case "C":
-
+                
                 break;
             case "D":
                 JOptionPane.showMessageDialog(null,"El programa términado");
