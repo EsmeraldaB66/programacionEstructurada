@@ -42,7 +42,56 @@ public class EstructurasControlP1 {
                 }
                 break;
             case "C":
-                
+                double nivelHemoglobina;
+                int edad;
+                String sexo = "",salida="";
+
+                edad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la edad en meses (si es mayor a 15 años, ingrese 180):"));
+                if (edad >= 180) {
+                    sexo = JOptionPane.showInputDialog("Ingrese el sexo (M para masculino, F para femenino):");
+                }
+                nivelHemoglobina = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el nivel de hemoglobina en g%:"));
+
+
+                boolean tieneAnemia = false;
+                switch (edad) {
+                    case 0: case 1:
+                        tieneAnemia = nivelHemoglobina < 13;
+                        break;
+                    case 2: case 3: case 4: case 5: case 6:
+                        tieneAnemia = nivelHemoglobina < 10;
+                        break;
+                    case 7: case 8: case 9: case 10: case 11: case 12:
+                        tieneAnemia = nivelHemoglobina < 11;
+                        break;
+                    default:
+                        if (edad > 12 && edad <= 60) {
+                            tieneAnemia = nivelHemoglobina < 11.5;
+                        } else if (edad > 60 && edad <= 120) {
+                            tieneAnemia = nivelHemoglobina < 12.6;
+                        } else if (edad > 120 && edad < 180) {
+                            tieneAnemia = nivelHemoglobina < 13;
+                        } else {
+                            switch (sexo.toUpperCase()) {
+                                case "F":
+                                    tieneAnemia = nivelHemoglobina < 12;
+                                    break;
+                                case "M":
+                                    tieneAnemia = nivelHemoglobina < 14;
+                                    break;
+                            }
+                        }
+                        break;
+                }
+
+
+                if (tieneAnemia) {
+                    salida = "El paciente tiene anemia.";
+                } else {
+                    salida = "El paciente NO tiene anemia.";
+                }
+
+                JOptionPane.showMessageDialog(null, salida);
                 break;
             case "D":
                 JOptionPane.showMessageDialog(null,"El programa términado");
